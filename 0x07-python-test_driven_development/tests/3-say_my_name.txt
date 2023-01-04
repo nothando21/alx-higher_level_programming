@@ -1,9 +1,7 @@
 A ``Say_my_name`` module
-
 ============================
 
 Using ``say_my_name``
-
 ---------------------
 
 Importing function from the module:
