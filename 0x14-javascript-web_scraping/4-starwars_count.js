@@ -1,18 +1,13 @@
 #!/usr/bin/node
-// Script that prints the title of a Star Wars movie where the episode number matches a given integer
-let request = require('request');
-let url = process.argv[2];
-let count = 0;
-request.get(url, function (err, response, body) {
-  if (err) {
-    return console.log(err);
-  } else if (response.statusCode === 200) {
+const request = require('request');
+request.get(process.argv[2], function (err, response, body) {
+  if (err) throw err;
+  else if (response.statusCode === 200) {
+    let count = 0;
     let films = JSON.parse(body).results;
-    for (let film of films) {
-      for (let character of film.characters) {
-        if (character.includes('/18/')) {
-          count += 1;
-        }
+    for (let movie of films) {
+      for (let char of movie.characters) {
+        if (char.endsWith('18/')) { count++; }
       }
     }
     console.log(count);

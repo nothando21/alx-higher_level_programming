@@ -1,15 +1,10 @@
 #!/usr/bin/node
-// Script that gets the contents of a webpage and stores it in a file
-let request = require('request');
 let fs = require('fs');
+let request = require('request');
+
 request.get(process.argv[2], function (err, response, body) {
-  if (err) {
-    return console.log(err);
-  } else if (response.statusCode === 200) {
-    fs.writeFile(process.argv[3], body, 'utf8', function (err) {
-      if (err) {
-        return console.log(err);
-      }
-    });
+  if (err) throw err;
+  else {
+    fs.writeFile(process.argv[3], body, 'utf8');
   }
 });
